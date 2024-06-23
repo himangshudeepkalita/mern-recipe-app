@@ -2,9 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export const CreateRecipe = () => {
   const userID = useGetUserID();
+  const [cookies, _] = useCookies(["access_token"]);
   const [recipe, setRecipe] = useState({
     name: "",
     description: "",
@@ -34,23 +36,23 @@ export const CreateRecipe = () => {
     setRecipe({ ...recipe, ingredients });
   };
 
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     try {
-//       await axios.post(
-//         "http://localhost:3001/recipes",
-//         { ...recipe },
-//         {
-//           headers: { authorization: cookies.access_token },
-//         }
-//       );
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post(
+        "http://localhost:3001/recipes",
+        { ...recipe },
+        {
+          headers: { authorization: cookies.access_token },
+        }
+      );
 
-//       alert("Recipe Created");
-//       navigate("/");
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
+      alert("Recipe Created");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="create-recipe">
@@ -61,10 +63,10 @@ export const CreateRecipe = () => {
           type="text"
           id="name"
           name="name"
-          //   value={recipe.name}
+          value={recipe.name}
           onChange={handleChange}
         />
-        <label htmlFor="description">Description</label>
+        {/* <label htmlFor="description">Description</label> */}
         {/* <textarea
           id="description"
           name="description"
@@ -88,7 +90,7 @@ export const CreateRecipe = () => {
         <textarea
           id="instructions"
           name="instructions"
-          //   value={recipe.instructions}
+          value={recipe.instructions}
           onChange={handleChange}
         ></textarea>
         <label htmlFor="imageUrl">Image URL</label>
@@ -96,7 +98,7 @@ export const CreateRecipe = () => {
           type="text"
           id="imageUrl"
           name="imageUrl"
-          //   value={recipe.imageUrl}
+          value={recipe.imageUrl}
           onChange={handleChange}
         />
         <label htmlFor="cookingTime">Cooking Time (minutes)</label>
@@ -104,7 +106,7 @@ export const CreateRecipe = () => {
           type="number"
           id="cookingTime"
           name="cookingTime"
-          //   value={recipe.cookingTime}
+          value={recipe.cookingTime}
           onChange={handleChange}
         />
         <button type="submit">Create Recipe</button>

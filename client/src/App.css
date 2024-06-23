@@ -68,3 +68,53 @@ a {
   margin: 10px;
   font-size: 25px;
 }
+
+.create-recipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 400px;
+}
+
+.create-recipe form {
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+img {
+  width: 400px;
+}
+
+p {
+  max-width: 400px;
+  font-size: 12px;
+}
